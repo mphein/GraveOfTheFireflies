@@ -8,6 +8,7 @@ class Menu extends Phaser.Scene {
   
     create() {
         //this.scene.start('menuScene');
-        this.add.text(20,20,"hi")
+        this.add.text(20,20,"MENU")
+        this.scene.start("catchScene")
     }
   }

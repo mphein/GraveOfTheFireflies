@@ -4,10 +4,10 @@ class Catch extends Phaser.Scene {
     }
     
     preload() { 
+      this.load.image("firefly", "./assets/Firefly.png")
     }
   
     create() {
-        //this.scene.start('menuScene');
-        this.add.text(20,20,"hi")
+      this.add.image(10, 10,"firefly")  ;  
     }
   }
