@@ -1,18 +1,28 @@
 class Firefly extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y, moveSpeed, texture, frame) {
+    constructor(scene, x, y, texture, frame) {
         super(scene, x, y, texture, frame);
+        this.scene = scene;
         scene.add.existing(this);
         scene.physics.add.existing(this);
-        this.speed = moveSpeed
+        this.setRandomPosition(64, 64, w - 256, h - 128)
+        this.SPEED = (Math.random()) * 200
+        this.ANG_SPEED = this.getDegrees();
+        this.setMaxVelocity(this.SPEED);
     }
 
     update() {
-        if (keyLEFT.isDown && this.x >= this.width - 50) {
-            this.body.velocity.x = -this.speed * 60;
-        } else if (keyRIGHT.isDown && this.x <= game.config.width - this.width + 50) {
-            this.body.velocity.x = this.speed * 60;
+        // Rotation 
+        // see https://phaser.discourse.group/t/how-to-create-circular-movement-motion-for-a-gameobject-with-arcade-physics/8324 by samme
+        this.setAngularVelocity(this.ANG_SPEED);
+        this.scene.physics.velocityFromRotation(Phaser.Math.DegToRad(this.body.rotation), this.SPEED, this.body.velocity);
+    }
+
+    getDegrees() {
+        let deg = Math.random();
+        if (deg >= .5) {
+            return -90
         } else {
-            this.body.velocity.x = 0;
+            return 90;
         }
     }
 }
