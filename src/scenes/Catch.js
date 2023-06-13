@@ -10,21 +10,6 @@ class Catch extends Phaser.Scene {
     }
   
     create() {
-      this.stars = this.add.tileSprite(0,0,640,480,'Stars').setOrigin(0,0);
-      this.backgroundMusic = this.sound.add('twinkle', {volume: .3, loop: true});
-      this.backgroundMusic.play();
-      this.fireflyGroup = this.physics.add.group();
-
-      keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
-      keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
-      keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-        
-      // create 10 fireflies
-        for (var i = 0; i < 10; i++) {
-            this.fireflyGroup.add(new Firefly(this, Math.random() * game.config.width, midH, 'Firefly').setOrigin(.5,0), false);
-        }
-         
-
       this.anims.create({
         key: "swoosh",
         frameRate: 12,
@@ -37,11 +22,26 @@ class Catch extends Phaser.Scene {
       repeat: -1,
       })
 
-
+      this.stars = this.add.tileSprite(0,0,640,480,'Stars').setOrigin(0,0);
+      this.backgroundMusic = this.sound.add('twinkle', {volume: .3, loop: true});
+      this.backgroundMusic.play();
       this.net = new Net(this, w, midH, 'Net', 'Net0.png').setOrigin(.5,.5);
       this.net.play("swoosh")
       this.net.setSize(18, 120)
       this.net.setOffset(5,5)
+
+      this.fireflyGroup = this.physics.add.group();
+
+      keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+      keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+      keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        
+      // create 10 fireflies
+        for (var i = 0; i < 10; i++) {
+            this.fireflyGroup.add(new Firefly(this, this.net, Math.random() * game.config.width, midH, 'Firefly').setOrigin(.5,0), false);
+        }
+        this.physics.add.overlap(this.net, this.fireflyGroup, this.catch, null, this);
+
     }
 
     update() {
@@ -50,5 +50,14 @@ class Catch extends Phaser.Scene {
         firefly.update();
     })
       this.net.update();
+      if (this.fireflyGroup.getChildren().length == 0) {
+        this.backgroundMusic.stop();
+        this.scene.start("gameScene")
+      }
+    }
+
+    catch(net, firefly) {
+      firefly.isCaught = true;
+      this.sound.play('catch');
     }
 }
