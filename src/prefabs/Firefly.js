@@ -1,11 +1,11 @@
 class Firefly extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, net, x, y, texture, frame) {
+    constructor(scene, net, x, y, start, wWid, hWid, texture, frame) {
         super(scene, x, y, texture, frame);
         this.net = net;
         this.scene = scene;
         scene.add.existing(this);
         scene.physics.add.existing(this);
-        this.setRandomPosition(64, 64, w - 256, h - 128)
+        this.setRandomPosition(start, start, w - wWid, h - hWid)
         this.SPEED = (Math.random()) * 200
         this.ANG_SPEED = this.getDegrees();
         this.setMaxVelocity(this.SPEED);

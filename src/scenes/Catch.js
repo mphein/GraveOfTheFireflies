@@ -4,7 +4,7 @@ class Catch extends Phaser.Scene {
     }
     
     preload() { 
-      this.load.image("Firefly", "./assets/Firefly.png")
+      this.load.atlas("Firefly", "./assets/Firefly/Firefly.png", "./assets/Firefly/Firefly.json")
       this.load.atlas("Net", "./assets/Net/Net.png", "./assets/Net/Net.json")
       this.load.image("Stars", "./assets/Stars.png")
     }
@@ -22,9 +22,21 @@ class Catch extends Phaser.Scene {
       repeat: -1,
       })
 
+      this.anims.create({
+        key: "fly",
+        frameRate: 12,
+        frames: this.anims.generateFrameNames('Firefly', {
+          prefix: "Firefly",
+          suffix: ".png",
+          start: 0,
+          end: 6
+        }),
+      repeat: -1,
+      })
+
       this.stars = this.add.tileSprite(0,0,640,480,'Stars').setOrigin(0,0);
-      this.backgroundMusic = this.sound.add('twinkle', {volume: .3, loop: true});
-      this.backgroundMusic.play();
+      backgroundMusic = this.sound.add('twinkle', {volume: .3, loop: true});
+      backgroundMusic.play();
       this.net = new Net(this, w, midH, 'Net', 'Net0.png').setOrigin(.5,.5);
       this.net.play("swoosh")
       this.net.setSize(18, 120)
@@ -38,7 +50,9 @@ class Catch extends Phaser.Scene {
         
       // create 10 fireflies
         for (var i = 0; i < 10; i++) {
-            this.fireflyGroup.add(new Firefly(this, this.net, Math.random() * game.config.width, midH, 'Firefly').setOrigin(.5,0), false);
+           this.currentFly = new Firefly(this, this.net, Math.random() * game.config.width, midH, 64, 256, 128, 'Firefly', 'Firefly0.png').setOrigin(.5,0);
+           this.currentFly.play("fly");
+           this.fireflyGroup.add(this.currentFly);
         }
         this.physics.add.overlap(this.net, this.fireflyGroup, this.catch, null, this);
 
@@ -51,8 +65,7 @@ class Catch extends Phaser.Scene {
     })
       this.net.update();
       if (this.fireflyGroup.getChildren().length == 0) {
-        this.backgroundMusic.stop();
-        this.scene.start("gameScene")
+        this.scene.start("catch2Scene")
       }
     }
 
