@@ -18,8 +18,6 @@ class Load extends Phaser.Scene {
     // See MondayHopes on pixabay "Twinkle Like a Star"
     this.load.audio('twinkle',"./assets/twinkle.mp3");    
     this.load.audio('catch',"./assets/catch.wav");    
-    this.load.audio('swipe',"./assets/swipe.wav"); 
-
   }
 
   create() {

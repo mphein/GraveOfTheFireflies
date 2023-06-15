@@ -2,7 +2,7 @@ let config = {
   type: Phaser.AUTO,
   width: 640,
   height: 480,
-  scene: [Load, Menu, Catch, Catch2, Game, Stay, Credits],
+  scene: [Load, Menu, CatchLoader, Catch, Catch2, StayLoader, PlayLoader, Play, Stay, Credits],
   fps: {
     target: 60,
     forceSetTimeOut: true
@@ -23,7 +23,7 @@ let config = {
 let game = new Phaser.Game(config);
 let backgroundMusic;
 //reserve keys
-let keyUP, keyDOWN, keySPACE;
+let keyUP, keyDOWN, keySPACE, keyP;
 
 let midW = game.config.width / 2;
 let w = game.config.width;

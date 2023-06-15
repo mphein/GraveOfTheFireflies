@@ -4,12 +4,15 @@ class Catch extends Phaser.Scene {
     }
     
     preload() { 
+      // load sprites and texture atlases
       this.load.atlas("Firefly", "./assets/Firefly/Firefly.png", "./assets/Firefly/Firefly.json")
       this.load.atlas("Net", "./assets/Net/Net.png", "./assets/Net/Net.json")
       this.load.image("Stars", "./assets/Stars.png")
     }
   
     create() {
+
+      // create anims
       this.anims.create({
         key: "swoosh",
         frameRate: 12,
@@ -34,23 +37,26 @@ class Catch extends Phaser.Scene {
       repeat: -1,
       })
 
+      // add scrolling background and music
       this.stars = this.add.tileSprite(0,0,640,480,'Stars').setOrigin(0,0);
       backgroundMusic = this.sound.add('twinkle', {volume: .3, loop: true});
       backgroundMusic.play();
+
+      // create player net
       this.net = new Net(this, w, midH, 'Net', 'Net0.png').setOrigin(.5,.5);
       this.net.play("swoosh")
       this.net.setSize(18, 120)
       this.net.setOffset(5,5)
 
-      this.fireflyGroup = this.physics.add.group();
-
+      // create player controls
       keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
       keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
       keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         
       // create 10 fireflies
+      this.fireflyGroup = this.physics.add.group();
         for (var i = 0; i < 10; i++) {
-           this.currentFly = new Firefly(this, this.net, Math.random() * game.config.width, midH, 64, 256, 128, 'Firefly', 'Firefly0.png').setOrigin(.5,0);
+           this.currentFly = new Firefly(this, this.net, Math.random() * game.config.width, midH, true, 64, 256, 128, 'Firefly', 'Firefly0.png').setOrigin(.5,0);
            this.currentFly.play("fly");
            this.fireflyGroup.add(this.currentFly);
         }
@@ -59,6 +65,7 @@ class Catch extends Phaser.Scene {
     }
 
     update() {
+      // scroll tileBackground and update sprites
       this.stars.tilePositionX -= 1;
       this.fireflyGroup.children.each((firefly)=> {
         firefly.update();
