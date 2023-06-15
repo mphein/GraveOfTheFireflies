@@ -17,7 +17,9 @@ class Load extends Phaser.Scene {
     });
     // See MondayHopes on pixabay "Twinkle Like a Star"
     this.load.audio('twinkle',"./assets/twinkle.mp3");    
-    this.load.audio('catch',"./assets/catch.wav");    
+    this.load.audio('catch',"./assets/catch.wav");   
+    // See Lesfm on pixabay "Sorrow"
+    this.load.audio('sorrow', './assets/sorrow.mp3') 
   }
 
   create() {

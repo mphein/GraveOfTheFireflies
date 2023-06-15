@@ -20,8 +20,10 @@ class StayLoader extends Phaser.Scene {
         }
 
         this.add.text(game.config.width/2, midH-40, 'STAY AND COMFORT SETSUKO', menuKeyConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, midH, 'CLICK ON THE OBJECTS ON SCREEN', menuKeyConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, midH, 'CLICK ON THE CENTER OBJECT', menuKeyConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, midH+40, 'PRESS (P) TO START ', menuKeyConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, midH+160, 'CLICK ON SETSUKO TO RETURN TO MENU', menuKeyConfig).setOrigin(0.5);
+
 
         // setsuko animation
         // add some fireflies to scene
@@ -43,6 +45,19 @@ class StayLoader extends Phaser.Scene {
 
         // define play key
         keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+
+        // return to menu
+        this.setsuko.setInteractive
+        ({
+            useHandCursor: true,
+        });
+  
+        this.setsuko.on('pointerdown', () => 
+        {
+            this.scene.start('menuScene')
+        });
+
+
     }
 
     update() {
