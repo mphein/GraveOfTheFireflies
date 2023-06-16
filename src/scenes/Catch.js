@@ -80,6 +80,6 @@ class Catch extends Phaser.Scene {
     // Catch firefly function which changes isCaught of each firefly to true
     catch(net, firefly) {
       firefly.isCaught = true;
-      this.sound.play('catch');
+      this.sound.play('catch', {volume: .5});
     }
 }

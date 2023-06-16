@@ -110,7 +110,7 @@ class Stay extends Phaser.Scene {
       this.candy.on('pointerdown', () => 
       {
           this.destroyText(this.candy);
-          this.sound.play('pop');
+          this.sound.play('pop', {volume: .1});
 
       });
       }

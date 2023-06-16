@@ -16,7 +16,7 @@ class Credits extends Phaser.Scene {
           color: '#fff0fb',
           align: 'center',
       }
-        this.add.text(midW, midH -40, "Artwork and sprites by Michael Hein", creditsConfig).setOrigin(.5,.5)
+        this.add.text(midW, midH -40, "Artwork, sprites, animations by Michael Hein", creditsConfig).setOrigin(.5,.5)
         this.add.text(midW, midH, "Mechanics and Code by Michael Hein", creditsConfig).setOrigin(.5,.5)
         this.add.text(midW, midH + 60, "Ideas adapted from scenes \n in Grave Of the Fireflies (1988)", creditsConfig).setOrigin(.5,.5)
 
