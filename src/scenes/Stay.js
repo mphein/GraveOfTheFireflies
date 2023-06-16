@@ -10,7 +10,8 @@ class Stay extends Phaser.Scene {
     }
   
     create() {
-      backgroundMusic = this.sound.add('sorrow', {volume: .3, loop: true});
+      this.backgroundMusic = this.sound.add('sorrow', {volume: .3, loop: true});
+      this.backgroundMusic.play();
       // cry animation
       this.textCounter = 0;
       this.anims.create({
@@ -44,31 +45,50 @@ class Stay extends Phaser.Scene {
 
       this.textKeyConfig = 
         {
-          fontFamily: 'Courier',
+          fontFamily: 'Brush Script MT',
           fontSize: '20px',
           color: '#ad02a8',
           align: 'center',
           fixedWidth: 0
         }
-        
+        this.currFont = 0;
+        this.currColor = 0;
         this.colors = ['#ad02a8', '#fe3988' , '#82bae0', '#fbfdf2', '#04a529', '#f0e500', '#fd8f00', '#f10026']
         this.textGroup = this.add.group();
+        this.fonts = ['Courier', 'Arial', 'Verdana', 'Tahoma', 'Trebuchet MS', 'Georgia', 'Garamond', 'Courier New', 'Brush Script MT'];
     }
 
     update(){
-
+      // ADD SHAKE SOUND 
+      // SETSUKO CLICK SOUND
+      // BACKGROUND MUSIC FOR SECOND PART
     }
 
     // create setsuko's cries
     spawnText() {
-      if (this.textCounter <= 10) {
+      if (this.textCounter <= 50) {
+        if (this.currFont > 8) {
+          this.currFont= 0;
+        }
+        if (this.currColor > 7) {
+          this.currColor = 0;
+        }
+        // randomize font size and family
+        this.textKeyConfig.fontFamily = this.fonts[this.currFont]
+        console.log(this.textKeyConfig.fontFamily);
         this.textKeyConfig.fontSize = Math.random() * 100
-        this.textKeyConfig.color = this.colors[this.textCounter % this.colors.length]
+        this.textKeyConfig.color = this.colors[this.currColor]
+        this.currFont++;
+        this.currColor++;
+
+        // change text
         if (this.textCounter % 2 == 0) {
           this.text = this.add.text(0,0, "STAY WITH ME", this.textKeyConfig)
         } else {
           this.text = this.add.text(0,0, "DON'T LEAVE ME", this.textKeyConfig)
         }
+        // play sound and change position
+        this.sound.play('push');
         this.text.setRandomPosition(0, 0, midW, h);
         this.textCounter++;
         console.log(this.textCounter);
@@ -84,6 +104,8 @@ class Stay extends Phaser.Scene {
       this.candy.on('pointerdown', () => 
       {
           this.destroyText(this.candy);
+          this.sound.play('pop');
+
       });
       }
     }
@@ -94,16 +116,8 @@ class Stay extends Phaser.Scene {
         this.textGroup.getChildren().pop().destroy();
       } else {
         this.textKeyConfig.fontSize = 20
-        candy.destroy();
-        this.returnText = this.add.text(midW, midH, "Click to return to Menu", this.textKeyConfig).setOrigin(.5)
-        this.returnText.setInteractive
-        ({
-          useHandCursor: true,
-        });
-        this.returnText.on('pointerdown', () => 
-        {
-            this.scene.start("menuScene");
-        });
+        this.backgroundMusic.stop();
+        this.scene.start('menuScene');
       }
     }
 

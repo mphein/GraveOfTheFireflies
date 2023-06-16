@@ -18,7 +18,7 @@ class Catch2 extends Phaser.Scene {
 
         this.fireflyGroup = this.physics.add.group();
         this.particleGroup = this.add.group();
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < 20; i++) {
             
             this.currFly = new Firefly(this, this.net, Math.random() * game.config.width, midH, true, 0, 0, 0, 'Firefly').setOrigin(.5,0)
             lightConfig.follow = this.currFly;

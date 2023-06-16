@@ -55,7 +55,7 @@ class Catch extends Phaser.Scene {
         
       // create 10 fireflies
       this.fireflyGroup = this.physics.add.group();
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < 20; i++) {
            this.currentFly = new Firefly(this, this.net, Math.random() * game.config.width, midH, true, 64, 256, 128, 'Firefly', 'Firefly0.png').setOrigin(.5,0);
            this.currentFly.play("fly");
            this.fireflyGroup.add(this.currentFly);
