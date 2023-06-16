@@ -1,3 +1,12 @@
+// Phaser components used: (1) physics systems
+//                         (2) particle effects 
+//                         (3) text objects
+//                         (4) animation manger 
+//                         (5) timers
+// Unfortunately I wasn't able to finish in time for the deadline due to health reasons
+// But I tried to think of experiemtal and non-conventional game ideas similar to Pippin Barr's Combat at the Movies
+// that we looked at in week 6.
+
 let config = {
   type: Phaser.AUTO,
   width: 640,

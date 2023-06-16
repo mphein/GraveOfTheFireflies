@@ -8,16 +8,18 @@ class Net extends Phaser.Physics.Arcade.Sprite {
     }
 
     update() {
+        // Move the net
         if (keyUP.isDown && this.y >= 0 + this.height/2) {
             this.body.velocity.y = -this.speed;
         } else if (keyDOWN.isDown && this.y <= h) {
             this.body.velocity.y = this.speed;
+        // Launch the net
         } else if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
             this.body.velocity.x = -150;
         } else {
             this.body.velocity.y = 0;
         }
-
+        // Reset net position
         if (this.x <= 0 - this.width) {
             this.x = w;
             this.body.velocity.x = 0;

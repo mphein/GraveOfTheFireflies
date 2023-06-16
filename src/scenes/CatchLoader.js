@@ -8,9 +8,8 @@ class CatchLoader extends Phaser.Scene {
     }
 
     create() {
-        // add text describing game
-        
-        let menuKeyConfig = 
+        // Add text to describe game and instructions
+        let catchConfig = 
         {
           fontFamily: 'Courier',
           fontSize: '20px',
@@ -19,11 +18,11 @@ class CatchLoader extends Phaser.Scene {
           fixedWidth: 0
         }
 
-        this.add.text(game.config.width/2, midH-40, 'LIGHT UP THE NIGHT BY CATCHING FIREFLIES', menuKeyConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, midH, 'USE ARROW (↑) and (↓) TO MOVE THE NET', menuKeyConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, midH+40, 'PRESS (SPACE) TO SWING THE NET', menuKeyConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, midH+80, 'PRESS (P) TO START ', menuKeyConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, midH+160, 'CLICK THE FIREFLY TO RETURN TO MENU', menuKeyConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, midH-40, 'LIGHT UP THE NIGHT BY CATCHING FIREFLIES', catchConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, midH, 'USE ARROW (↑) and (↓) TO MOVE THE NET', catchConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, midH+40, 'PRESS (SPACE) TO SWING THE NET', catchConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, midH+80, 'PRESS (P) TO START ', catchConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, midH+160, 'CLICK THE FIREFLY TO RETURN TO MENU', catchConfig).setOrigin(0.5);
 
 
         // add some fireflies to scene
@@ -38,7 +37,8 @@ class CatchLoader extends Phaser.Scene {
             }),
           repeat: -1,
           })
-          
+        
+        // Add firefly to return to menu
         this.currentFly = new Firefly(this, this.net, midW, midH-100, false, 64, 256, 128, 'Firefly', 'Firefly0.png').setOrigin(.5,0);
         this.currentFly.play("fly");
 

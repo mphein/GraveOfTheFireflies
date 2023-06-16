@@ -17,6 +17,7 @@ class Play extends Phaser.Scene {
           wordWrap: { width: 600, useAdvancedWrap: true }
       }
 
+      // Description about unfinished scene
       this.add.text(midW, h/4, "I wasn't able to finish this game, but my idea was to have \
       Setsuko playing in Heaven while Seita mourns her death. On one side of the scene Seita \
       would be saying goodbye to Setsuko while he cremates her lifeless body. Setsuko is on the opposite \

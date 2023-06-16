@@ -6,6 +6,5 @@ class Setsuko extends Phaser.GameObjects.Sprite {
     }
 
     update(){
-
     }
 }

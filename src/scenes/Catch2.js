@@ -9,17 +9,19 @@ class Catch2 extends Phaser.Scene {
     }
 
     create() {
+        // Configuration for particles
         let lightConfig = {
             quantity: 1,
             scale: {start:.001, end:.5},
             lifespan: {min: 100, max: 200},
             alpha: 1,
         };
-
+        
+        // Attach particles to follow invisible fireflies so I don't have to rewrite the physics
         this.fireflyGroup = this.physics.add.group();
         this.particleGroup = this.add.group();
         for (var i = 0; i < 20; i++) {
-            
+            // Create fireflies and particles add them to respective groups
             this.currFly = new Firefly(this, this.net, Math.random() * game.config.width, midH, true, 0, 0, 0, 'Firefly').setOrigin(.5,0)
             lightConfig.follow = this.currFly;
             this.currParticle = this.add.particles(20,20,'Light',lightConfig);
@@ -28,6 +30,7 @@ class Catch2 extends Phaser.Scene {
             this.fireflyGroup.add(this.currFly);
         }
 
+        // timed events to make fireflies fade as they "die" and lower music volume
         this.fireflyFade = this.time.addEvent({
             delay: 10000, 
             callback: ()=> {
@@ -62,6 +65,7 @@ class Catch2 extends Phaser.Scene {
     }
 
     update() {
+        // update fireflies and return to menu when fireflies are all gone
         this.fireflyGroup.children.each((firefly)=> {
             firefly.update();
         })

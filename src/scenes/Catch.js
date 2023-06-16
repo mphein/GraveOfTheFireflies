@@ -70,12 +70,14 @@ class Catch extends Phaser.Scene {
       this.fireflyGroup.children.each((firefly)=> {
         firefly.update();
     })
+      // move net and check to see if any fireflies are left
       this.net.update();
       if (this.fireflyGroup.getChildren().length == 0) {
         this.scene.start("catch2Scene")
       }
     }
-
+    
+    // Catch firefly function which changes isCaught of each firefly to true
     catch(net, firefly) {
       firefly.isCaught = true;
       this.sound.play('catch');

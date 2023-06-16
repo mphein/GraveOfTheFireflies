@@ -7,6 +7,7 @@ class Menu extends Phaser.Scene {
     }
   
     create() {
+        // Menu text config
       let menuKeyConfig = 
       {
           fontFamily: 'Courier',
@@ -16,16 +17,16 @@ class Menu extends Phaser.Scene {
           align: 'center',
           fixedWidth: 0
       }
-      // show menu title text
+      // Show menu title text
       this.add.text(game.config.width/2, h/4, 'GRAVE OF THE FIREFLIES', menuKeyConfig).setOrigin(0.5);
 
-      // show menu key text
+      // Show menu key text
       this.catchScene = this.add.text(game.config.width/2, midH - 40, 'Click to Catch Fireflies', menuKeyConfig).setOrigin(0.5);
       this.stayScene = this.add.text(game.config.width/2, midH, 'Click to Comfort Setsuko', menuKeyConfig).setOrigin(0.5);
       this.playScene = this.add.text(game.config.width/2, midH + 40, 'Click to Be at Peace', menuKeyConfig).setOrigin(0.5);
       this.creditScene= this.add.text(game.config.width/2, midH + 120, 'Click for Credits', menuKeyConfig).setOrigin(0.5);
 
-
+      // Add different scenes to a group and attach interactives to each
       this.sceneGroup = this.add.group();
       this.sceneGroup.add(this.catchScene)
       this.sceneGroup.add(this.stayScene)
@@ -47,6 +48,8 @@ class Menu extends Phaser.Scene {
           scene.setTint(0xffffff)
       })
      })
+
+     // Customize where each click on text directs player
         this.catchScene.once('pointerdown', () => 
         {
             this.scene.start('catchLoader')
