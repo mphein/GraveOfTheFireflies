@@ -5,7 +5,9 @@
 //                         (5) timers
 // Unfortunately I wasn't able to finish in time for the deadline due to health reasons
 // But I tried to think of experiemtal and non-conventional game ideas similar to Pippin Barr's Combat at the Movies
-// that we looked at in week 6.
+// that we looked at in week 6. I wanted to avoid extremely violent scenes of the war, because to me the movie is about
+// following this very intimate relationship between siblings during harsh times. I focused on critical moments of the movie
+// that highlight the pair's youth, ignorance, innocence, and struggles throughout their journey.
 
 let config = {
   type: Phaser.AUTO,
@@ -31,9 +33,9 @@ let config = {
 
 let game = new Phaser.Game(config);
 let backgroundMusic;
+
 //reserve keys
 let keyUP, keyDOWN, keySPACE, keyP;
-
 let midW = game.config.width / 2;
 let w = game.config.width;
 let h = game.config.height;
