@@ -2,7 +2,7 @@ let config = {
   type: Phaser.AUTO,
   width: 640,
   height: 480,
-  scene: [Load, Menu, CatchLoader, Catch, Catch2, StayLoader, PlayLoader, Play, Stay, Credits],
+  scene: [Load, Menu, CatchLoader, Catch, Catch2, StayLoader, Play, Stay, Credits],
   fps: {
     target: 60,
     forceSetTimeOut: true

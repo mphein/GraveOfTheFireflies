@@ -20,7 +20,7 @@ class StayLoader extends Phaser.Scene {
         }
 
         this.add.text(game.config.width/2, midH-40, 'STAY AND COMFORT SETSUKO', menuKeyConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, midH, 'CLICK ON THE CENTER OBJECT', menuKeyConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, midH, 'CLICK ON THE CENTER OBJECT UNTIL RETURN TO MENU', menuKeyConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, midH+40, 'PRESS (P) TO START ', menuKeyConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, midH+160, 'CLICK ON SETSUKO TO RETURN TO MENU', menuKeyConfig).setOrigin(0.5);
 

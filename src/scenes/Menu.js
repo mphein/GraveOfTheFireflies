@@ -23,11 +23,14 @@ class Menu extends Phaser.Scene {
       this.catchScene = this.add.text(game.config.width/2, midH - 40, 'Click to Catch Fireflies', menuKeyConfig).setOrigin(0.5);
       this.stayScene = this.add.text(game.config.width/2, midH, 'Click to Comfort Setsuko', menuKeyConfig).setOrigin(0.5);
       this.playScene = this.add.text(game.config.width/2, midH + 40, 'Click to Be at Peace', menuKeyConfig).setOrigin(0.5);
+      this.creditScene= this.add.text(game.config.width/2, midH + 120, 'Click for Credits', menuKeyConfig).setOrigin(0.5);
+
 
       this.sceneGroup = this.add.group();
       this.sceneGroup.add(this.catchScene)
       this.sceneGroup.add(this.stayScene)
       this.sceneGroup.add(this.playScene)
+      this.sceneGroup.add(this.creditScene)
 
       this.sceneGroup.children.each((scene)=> {
         scene.setInteractive
@@ -54,8 +57,11 @@ class Menu extends Phaser.Scene {
         });
         this.playScene.once('pointerdown', () => 
         {
-            this.scene.start('playLoader')
+            this.scene.start('playScene')
         });
-  
+        this.creditScene.once('pointerdown', () => 
+        {
+            this.scene.start('creditScene')
+        });
     }
   }
